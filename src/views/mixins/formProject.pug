@@ -1,0 +1,9 @@
+
+mixin formProject(project = {})
+
+  form.add-project(action=`/new-project/${project.id || ''}` method="POST")
+    .field
+      label(for="name") Nombre proyecto:
+      input(type="text" class=`${errors ? 'error-input' : ''}` id="name" name="name" placeholder="Nombre proyecto..." value=project.name)
+    .field.send
+      input(type="submit" value=`${project.name  ? 'Guardar' : 'Agregar' }` class="btn")

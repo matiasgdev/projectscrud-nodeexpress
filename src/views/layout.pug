@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+html(lang="en")
+  head
+    include partials/head
+  body
+  header.header
+    h1 UpTask -  
+      small administrador de proyectos
+    a(href="/logout") Cerrar sesion
+  
+  main.container
+    aside.container-projects
+
+      .panel.create-project
+        a(href="/nuevo-proyecto" class="btn") Nuevo proyecto
+          span +
+      
+      .panel.list-projects
+        h2 Proyectos
+        ul#projects.projects
+          if projects.length
+            each project in projects
+              li 
+                a(href=`/proyecto/${project.url}`)= project.name
+          else
+            li No hay proyectos para mostrar
+
+    //pre= vardump(projects)
+    block content
+    
+  // Scripts
+  script(src="/public/dist/bundle.js")

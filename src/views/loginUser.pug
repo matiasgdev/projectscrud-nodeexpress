@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    include partials/head
+  body.login
+    .container-form
+      h1= title
+
+      form#form.box.box-login(method="POST" action="/iniciar-sesion")
+
+        //- flash messagess
+        if error
+          span.alert.error= error
+
+        if locals.success
+          span.alert.success= locals.success
+
+        .field
+          label(for="email") Email
+          input(type="email" name="email" id="email" placeholder="Tu email" value= email)
+        .field
+          label(for="password") Password
+          input(type="password" name="password" id="password" placeholder="Contraseña" value= password)
+        .field
+          input.btn(type="submit" value="Logearse")
+        
+
+        span ¿Aún no tienes una cuenta?
+        a(href="/registrarse")  Regístrate
+        br
+        br
+        a.actions(style="float:right; text-decoration: none" href="/reestablecer-contrasena") ¿Olvidaste tu contraseña?

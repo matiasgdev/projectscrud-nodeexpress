@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    style
+      include ./email.css
+  body
+    h2 Confirma tu cuenta
+    p Hola, has solicitado #[strong crear tu cuenta], haz click en el siguiente enlace:
+    a.link(href=`${confirmUrl}`) Confirmar
+    br 
+    small Este enlace es temporal
+    p Si no puedes acceder a este enlace visita #[a #{confirmUrl}]

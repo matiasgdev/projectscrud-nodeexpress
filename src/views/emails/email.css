@@ -1,0 +1,24 @@
+body{
+  font-family: Helvetica, sans-serif;
+}
+
+h2 {
+  font-size: 2em;
+  text-align: center;
+}
+
+.link {
+  margin-top: 1em;
+  display: block;
+  text-decoration: none;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1em 2em;
+  color: rgb(255, 255, 255);
+  background: rgb(114, 175, 231);
+  font-weight: bold;
+}
+
+p {
+  line-height: 1.5;
+}

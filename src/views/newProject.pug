@@ -1,0 +1,18 @@
+extends layout
+
+include mixins/formProject
+
+block content
+  .main-content
+    h1 #{title}
+
+    //pre= vardump(project)
+
+    if errors
+      each error in errors
+        .alert.error= error.msg
+    
+    +formProject(project)
+
+
+    
