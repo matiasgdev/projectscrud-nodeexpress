@@ -1,4 +1,22 @@
 extends layout
 
-block content
-  h1 Index
+include mixins/formProject
+
+block content 
+  .main-content
+    h1 Dashboard
+    
+    +formProject(project, errors)
+
+    h2 Tus últimos proyectos
+
+    if projectsLimit.length
+      .projects__list
+          each project in projectsLimit
+              .projects__list--item
+                a(href=`/proyecto/${project.url}`).projects__list--item--name= project.name
+                span.projects__list--item--date= project.createdAt
+    else 
+      p Aun no tienes proyectos en tu lista, #[label(for="name" class="add-one") #[strong agrega uno]].
+
+    

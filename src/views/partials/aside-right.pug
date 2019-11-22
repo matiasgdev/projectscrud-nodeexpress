@@ -1,0 +1,10 @@
+aside.container-asid.aside__right
+  .panel.list-projects
+    h2 Todos tus proyectos
+    ul#projects.projects
+      if projects.length
+        each project in projects
+          li.projects__item 
+            a(href=`/proyecto/${project.url}`)= project.name
+      else
+        li No hay proyectos para mostrar

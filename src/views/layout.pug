@@ -5,29 +5,18 @@ html(lang="en")
     include partials/head
   body
   header.header
-    h1 UpTask -  
-      small administrador de proyectos
-    a(href="/logout") Cerrar sesion
+    h1 UpProjects
+    span.header__greeting Hi, 
+      span.header__greeting--name #{locals.user.name}
   
   main.container
-    aside.container-projects
-
-      .panel.create-project
-        a(href="/nuevo-proyecto" class="btn") Nuevo proyecto
-          span +
-      
-      .panel.list-projects
-        h2 Proyectos
-        ul#projects.projects
-          if projects.length
-            each project in projects
-              li 
-                a(href=`/proyecto/${project.url}`)= project.name
-          else
-            li No hay proyectos para mostrar
+    include partials/aside-left
 
     //pre= vardump(projects)
-    block content
+    .main
+      block content
+
+    include partials/aside-right
     
   // Scripts
   script(src="/public/dist/bundle.js")

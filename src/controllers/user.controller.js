@@ -40,10 +40,18 @@ exports.createUserAccount =  async (req, res) => {
 
     req.flash('success', 'Te enviamos un correo para confirmar tu cuenta')
     res.redirect('/iniciar-sesion') 
+
   } catch(err) {
-      req.flash('error', err.errors.map(error => error.message))
+      const errors = {}
+      if (errors) {
+        err.errors.map(error => {
+          errors[error.path] = error.message
+        })
+      }
+      
+      req.flash('errors', errors)
       res.render('createUser', {
-        messages: req.flash('error'),
+        errors: req.flash('errors'),
         title: 'Registrate en Uptasks',
         email,
         name,

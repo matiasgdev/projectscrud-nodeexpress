@@ -5,7 +5,6 @@ const { check } = require('express-validator')
 
 const { 
   index, 
-  create,
   getProjectByUrl,
   newProject,
   edit,
@@ -24,7 +23,6 @@ const { authUser, isAuthenticated, logout, sendToken, validateToken, updatePassw
 
 router.get('/',isAuthenticated, index )
 
-router.get('/nuevo-proyecto', isAuthenticated, create)
 
 router.post('/new-project', isAuthenticated,  
     check('name')
@@ -52,7 +50,7 @@ router.post('/new-project/:id',  isAuthenticated,
 router.delete('/proyectos/:url', isAuthenticated, deleteProject)
 
 //add task
-router.post('/projects/:url', isAuthenticated,
+router.post('/proyecto/:url', isAuthenticated,
   check('task')
   .not().isEmpty().withMessage('El campo no puede estar vacio')
   .isLength({min: 3}).withMessage('Debe contener al menos 3 caracteres')

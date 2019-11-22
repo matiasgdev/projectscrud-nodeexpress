@@ -53,6 +53,20 @@ app.use((req, res, next) => {
 // Routes
 app.use(require('./routes/index'));
 
+// Handle error routes
+app.use((req, res, next) => {
+  const error = new Error('not Found');
+  error.status = 404;
+  next(error);
+})
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.render('404', {
+    message: error.message
+  });
+});
+
 const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || 3000
 

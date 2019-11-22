@@ -6,25 +6,24 @@ html(lang="en")
     .container-form
       h1 Registrate en Uptasks
 
-      if error
-        p.alert.error= error
-
-      if messages
-        .alerts
-          each error in messages
-            .alert.error(class=`${category}`) 
-              p= error
-
       form#form.box.box-login(method="POST" action="/registrarse")
         .field
           label(for="email") Email
           input(type="email" name="email" id="email" placeholder="Tu email" value= email)
+        if errors
+          span.alert.error= errors[0].email
+
         .field
           label(for="name") Nombre
           input(type="text" name="name" id="name" placeholder="Nombre completo" value= name)
+        if errors
+          span.alert.error= errors[0].name
+
         .field
           label(for="password") Password
           input(type="password" name="password" id="password" placeholder="Contraseña" value= password)
+        if errors
+          span.alert.error= errors[0].password
         .field
           input.btn(type="submit" value="Registrarse")
 

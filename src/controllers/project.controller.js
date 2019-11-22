@@ -6,39 +6,39 @@ const { validationResult } = require('express-validator')
 
 exports.index = async (req, res) => {
   const userId = res.locals.user.id
-  const projects = await Project.findAll({where: { userId }})
+
+  const projects = await Project.findAll({
+    where: { userId },
+    order: [
+      ['createdAt', 'desc']
+    ]
+  })
+
+  const projectsLimit = await Project.findAll({
+    where: { userId },
+    order: [
+      ['createdAt', 'desc']
+    ],
+    limit: 4
+  })
 
   res.render('index', {
     title: 'Proyectos',
-    projects
-  })
-}
-
-exports.create = async (req, res) => {
-  const userId = res.locals.user.id
-  const projects = await Project.findAll({where: { userId }})
-
-  res.render('newProject', {
-    title: 'Nuevo proyecto',
-    projects
+    projects,
+    projectsLimit,
+    errors: req.flash('errors')
   })
 }
 
 exports.newProject = async (req, res) => {
 
-  const userId = res.locals.user.id
-  const projects = await Project.findAll({where: { userId }})
-  
   const { name } = req.body
   // get errors
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
-    res.render('newProject', {
-      title: 'Nuevo proyecto',
-      errors: errors.array(),
-      projects
-    })
+    req.flash('errors', errors.array())
+    return res.redirect('/')
   } else { //insert in db
       try {
         const userId = res.locals.user.id
@@ -55,7 +55,9 @@ exports.newProject = async (req, res) => {
 exports.getProjectByUrl = async (req, res) => {
 
   const userId = res.locals.user.id
-  const projectsPromise = Project.findAll({where: { userId }})
+  const projectsPromise = Project.findAll({where: { userId }, order: [
+    ['createdAt', 'desc']
+  ]})
 
   const projectPromise = Project.findOne({
     where: {
@@ -75,10 +77,7 @@ exports.getProjectByUrl = async (req, res) => {
     const tasks = await Task.findAll({
       where: {
         projectId: project.id
-      },
-      //include: [
-      //  { model: Project }
-      //]
+      }
     })
 
   
@@ -98,7 +97,9 @@ exports.getProjectByUrl = async (req, res) => {
 
 exports.edit = async (req, res) => {
   const userId = res.locals.user.id
-  const projectsPromise = Project.findAll({where: { userId }})
+  const projectsPromise = Project.findAll({where: { userId }, order: [
+    ['createdAt', 'desc']
+  ]})
 
   const projectPromise = Project.findOne({
     where: {
@@ -120,7 +121,9 @@ exports.edit = async (req, res) => {
 exports.updateProject = async (req, res) => {
 
   const userId = res.locals.user.id
-  const projectsPromise = Project.findAll({where: { userId }})
+  const projectsPromise = Project.findAll({where: { userId }, order: [
+    ['createdAt', 'desc']
+  ]})
 
   const projectPromise = Project.findOne({
     where: {

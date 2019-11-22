@@ -12,6 +12,8 @@ if (tasks) {
 
     const action = item.dataset.action
 
+    const pathRedirect = document.querySelectorAll('.add-task')[0].getAttribute('action')
+
     // patch state of task
     const url = `${location.origin}/task/${taskId}`
 
@@ -64,8 +66,8 @@ if (tasks) {
                   updateProgress()
                   setTimeout(()=> { 
                     parentItem.parentElement.removeChild(parentItem)
-                    
-                  }, 1500)
+                    window.location.href = pathRedirect
+                  }, 1000)
 
                  }
               })

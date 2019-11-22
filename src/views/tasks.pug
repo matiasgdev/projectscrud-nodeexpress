@@ -1,51 +1,50 @@
 extends layout
 
 block content
-  .main-content
-    h1 #{title} - #{project.name}
 
-    if errors
-      each error in errors
-        .alert.error= error.msg 
-
-    // Add task form
-    form.add-task(action=`/projects/${project.url}` method="POST")
-      .field
-        label(for="task") Tarea
-        input.task-name(type="text" class=`${errors ? 'error-input' : ''}` name="task" id="task" placeholder="Nombre de la tarea")
-      .field
-        input.btn.new-task(type="submit" value="Agregar")
-
-    // List of tasks
-    h2 Tareas a realizar
-    if tasks.length > 0
-      .pending-list
-        ul
-          each task in tasks
-            li.task(data-task=task.id)
-              p=task.task
-              .actions
-                if task.status
-                  i.far.fa-check-circle.completed(data-action="toggleStatus")
-                else
-                  i.far.fa-check-circle(data-action="toggleStatus")
-                i.fas.fa-trash(data-action="delete")
-    else
-      p.no-tasks No hay tareas para este proyecto
-
-
-    //pre= vardump(project)
-    //pre= vardump(tasks)
-
+  .main-content.task
+    div.task__header
+      h1.task__header--name #{project.name}
+      a.task__action.task--edit(href=`/proyecto/editar/${project.id}` class="btn") Editar
+      button.task__action.task--delete.btn#delete-project(data-project-url=project.url type="button") Eliminar
     // Progress bar
     if tasks.length > 0
       .progress
-        h2 Avance del proyecto
+        p Avance del proyecto
         #header-progress.header-progress
           #percentage.percentage
           span.percentage-number
-        
 
-    .container-actions
-      a(href=`/proyecto/editar/${project.id}` class="btn") Editar
-      button#delete-project(data-project-url=project.url type="button" class="btn delete") Eliminar
+    
+
+    // Add task form
+    form.add-task(action=`/proyecto/${project.url}` method="POST")
+      if errors
+        .alert.error= errors[0].msg
+      .field
+        label(for="task") Nueva tarea
+        input(type="text" class=`${errors ? 'error-input' : ''}` name="task" id="task" placeholder="Nombre de la tarea")
+      
+      .field
+        input(type="submit" value="Agregar")
+
+    // List of tasks
+    div.task__do
+      h2 Tareas a realizar
+      if tasks.length > 0
+        .pending-list
+          ul
+            each task in tasks
+              li.task(data-task=task.id)
+                p=task.task
+                .actions
+                  if task.status
+                    i.far.fa-check-circle.completed(data-action="toggleStatus")
+                  else
+                    i.far.fa-check-circle(data-action="toggleStatus")
+                  i.fas.fa-trash(data-action="delete")
+      else
+        p.no-tasks No hay tareas para este proyecto aún, #[label(for="task" class="add-one") #[strong agrega una]].
+
+    
+    

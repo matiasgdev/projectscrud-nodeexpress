@@ -1,4 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Barlow&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+:root {
+    --bg-primary: #fff;
+    --bg-secondary: #fefefe;
+    --bg-main: rgb(242, 243, 242);
+    --text-color-main: #777777;
+    --detail-lines: rgba(33,33,33,0.1);
+    --font-primary: 'Quicksand', sans-serif;
+}
+
+a:active {
+    color: inherit;
+}
+
 html {
     box-sizing: border-box;
 }
@@ -18,10 +32,14 @@ input:focus, input:active {
 }
 
 /** Login **/
-.login,
-.crear-cuenta {
-    background: #455A64;
+.login {
+    background: var(--bg-main);
 }
+
+.container-form span {
+    color: var(--text-color-main);
+}
+
 .container-form {
     display: flex;
     justify-content: center;
@@ -31,7 +49,7 @@ input:focus, input:active {
 }
 .container-form h1 {
     text-align: center;
-    color: white;
+    color: gray;
 }
 .container-form h1  span{
     font-weight: 400;
@@ -43,15 +61,15 @@ input:focus, input:active {
     font-size: 1.4rem;
 }
 .box-login {
-    background-color: #F2F2F2;
-    border: 1px solid #707070;
+    background-color: var(--bg-secondary);
     max-width: 650px;
     width: 90%;
     margin: 0 auto;
     min-height: 300px;
-    -webkit-box-shadow: 0px 25px 35px -17px rgba(0,0,0,0.56);
-    -moz-box-shadow: 0px 25px 35px -17px rgba(0,0,0,0.56);
-    box-shadow: 0px 25px 35px -17px rgba(0,0,0,0.56);
+    border-radius: 1rem;
+    -webkit-box-shadow: 0px 25px 35px -17px rgba(0,0,0,0.185);
+    -moz-box-shadow: 0px 25px 35px -17px rgba(0,0,0,0.185);
+    box-shadow: 0px 25px 35px -17px rgba(0, 0, 0, 0.185);
     padding: 3rem;
 }
 .field {
@@ -71,12 +89,10 @@ input:focus, input:active {
 .field input[type="text"],
 .field input[type="password"] {
     height: 3rem;
-    border: 0;
     flex: 1;
-    border: 1px solid #455A64;
-    border-radius: 5rem;
-    padding-left: 2rem;
-    color: grey;
+    border: 1px solid var(--detail-lines);
+    padding-left: 1.5rem;
+    color: var(--text-color-main);
 }
 .field.actions {
     justify-content: space-between;
@@ -85,40 +101,27 @@ input:focus, input:active {
    justify-content: flex-end;
 }
 .btn {
-    background-color: #f4f4f4;
+    height: 30px;
+    background-color: #0072a6;
     border-radius: 30px;
     text-align: center;
-    transition: background-color .1s;
     padding: 20px 20px;
-    text-transform: uppercase;
-    border: none;
-    font-weight: 900;
-    width: 250px;
-    margin:0  auto; 
-    border: 1px solid gray;
-
-    display: flex;
-    align-items: center;
-    line-height: 0;
-}
-.btn span {
-    font-size: 2.2rem;
-    margin-left: 20px;
-}
-
-.btn:hover {
-    cursor: pointer;
-    background-color: rgb(226, 226, 226)!important;
-}
-.btn.delete {
-    margin-top: 1rem;
-    float: right;
-    background-color: red!important;
+    text-transform: capitalize;
+    border: 1px solid var(--detail-lines);
     color: white;
+    line-height: 0;
+    cursor: pointer;
 }
+
+
 .field a {
     color: black;
     text-decoration: none;
+}
+
+.add-one:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /** header **/
@@ -126,29 +129,74 @@ body.index {
     height: 100vh;
 }
 .header {
-    background-color: #455A64;
-    padding: 1rem;
+    background: var(--bg-primary);
+    padding: 1rem 6rem;
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid var(--detail-lines);
 }
 .header h1 {
-    color: white;
+    color: var(--text-color-main);
     margin:0;
     font-size: 1.4rem;
 }
-.header a {
-    color: white;
-    text-decoration: none;
+
+.header__greeting {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #616161;
 }
-/*** sidebar**/     
-.container-projects {
+
+/*** sidebars **/     
+.container-aside {
     height: 100%;
-    max-width: 300px;
-    background-color: #607D8B;
+    max-width: 250px;
+    background: var(--bg-secondary);
     padding-top: 1rem;
 }
+
+.aside__left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem;
+}
+
+.aside__right {
+    width: 250px;
+}
+
+
+.nav__list {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    list-style-type: none;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.nav__items {
+    margin-bottom: 3rem;
+}
+
+.nav__items > .new {
+    border: 1px solid inherit;
+}
+
+.nav__links {
+    text-decoration: none;
+}
+
+.nav__links:hover {
+    color: black;
+}
+
 .panel {
     padding: 1rem;
     margin: 1rem;
@@ -159,18 +207,70 @@ body.index {
     text-decoration: none;
 }
 .panel h2 {
-    color: #FDD835;
+    color: var(--text-color-main);
     font-weight: 900;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.3rem;
     margin: 0;
 }
 
-.create-project i {
-    margin-left: 1rem;
+/* projects */
+
+.projects__list {
+    margin-top: 1rem;
+    
+    display: flex;
+    flex-wrap: wrap;
 }
-.create-project a {
-    color: #455A64;
+
+.projects__list--item {
+    flex-basis: 48%;
+    border: 1px solid var(--detail-lines);
+    box-shadow: 0 0 .9rem rgba(133,133,133,0.1);
+    margin: 1% 1%;
+    height: 100px;
+    background: white;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 100ms ease-in-out;
+}
+.projects__list--item:hover {
+    cursor: pointer;
+    transform: translateY(-7px);
+    box-shadow: 0 0 .9rem rgba(133,133,133,0.2);
+}
+
+.projects__list--item--name {
+    font-size: 1.4rem;
+    color: grey;
+    text-decoration: none;
+}
+.projects__list--item--name:hover {
+    text-decoration: underline;
+}
+.projects__list--item--date {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: .9rem;
+    padding: .3rem;
+    color: var(--text-color-main);
+}
+
+.projects__item {
+    padding: 1rem .3rem;
+    border-bottom: 1px solid var(--detail-lines);
+}
+.projects__item:first-child {
+    border-top: 1px solid var(--detail-lines);
+}
+
+
+.projects a {
+    color: var(--text-color-main);
 }
 
 .list-projects ul{
@@ -178,13 +278,13 @@ body.index {
     padding: 1.5rem 0 0 0;
     margin: 0;
 }
-.list-projects ul li {
-    margin-bottom: 1rem;
-}
-.list-projects ul li a:hover {
-    color: #FDD835;
-}
+
 /** Contenido Principal */
+.main {
+    flex-grow: 1;
+    background: var(--bg-main);
+}
+
 .container {
     display: flex;
     height: calc( 100vh - 60px);
@@ -192,11 +292,12 @@ body.index {
 .main-content {
     flex: 1;
     padding: 1rem;
-    overflow: scroll;
+    background: inherit;
 }
 .main-content h1,
 .main-content h2 {
-    text-align: center;
+    text-align: left;
+    color: #9a9a9a;
 }
 .main-content h1 {
     font-size: 1.8rem;
@@ -208,26 +309,16 @@ body.index {
 .main-content h1 span {
     font-weight: 400;
 }
-.add-task {
-    max-width: 800px;
-    width: 90%;
-    background-color: #607D8B;
-    margin: 0 auto;
-    padding: 2rem;
-    color: white;
-    transition: background-color .5s ease-in-out;
-}
+
 
 /** Listado Pendientes **/
 .pending-list {
-    background-color: #fffbb8;
+    background-color: #ffffff;
     max-width: 800px;
     width: 90%;
     margin: 2rem auto 0 auto;
-    padding: .5rem;
-    color: #817373;
-    border-radius: .5em;
-    box-shadow: 0 10px .6em rgba(55,55,55,0.155);
+    padding: 0 .5rem;
+    color: #817373; 
 }
 .pending-list ul {
     padding: 0;
@@ -237,7 +328,7 @@ body.index {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     border-bottom: 1px solid #d1d1d155;
     max-height: 2.5em;
     padding-left: .5em;
@@ -274,18 +365,17 @@ body.index {
 }
 
 .alert {
-    padding: .5rem;
     text-align: center;
-    font-size: 1.1rem;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    font-family: var(--font-primary);
     max-width: 300px;
-    margin: 0 auto 1rem auto;
+    margin-top: .5rem;
 }
 .error {
-    color: red!important;
+    color: #c40a0a!important
 }
 .error p {
-    color: red!important;
+    color: #c40a0a!important;
 }
 .correcto {
     color: green;
@@ -297,12 +387,26 @@ body.index {
 }
 
 /** Linea de Avance **/
+
+.progress {
+    padding-top: 1rem;
+}
+
+.progress p {
+    text-align: left;
+    padding-left: 17px;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: .5rem 0;
+    color: var(--text-color-main);
+}
+
 .header-progress {
     height: 19px;
-    border: 1px solid #999;
+    border: 1px solid var(--detail-lines);
     max-width: 350px;
     width: 90%;
-    margin: 0 auto;
+    margin-left: 17px;
 }
 .percentage {
     width: 0%;
@@ -320,41 +424,44 @@ body.index {
     color: gray;
 }
 
-form.add-project {
-    max-width: 800px;
-    width: 90%;
-    background-color: #607D8B;
-    margin: 0 auto;
-    padding: 2rem;
-    color: white;
-    transition: background-color .5s ease-in-out;
+.new-project {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: white;
+    width: 400px;
+    padding: 1rem;
 }
-form.add-project label,
-form.add-project input {
-    display: block;
+
+.new-project input {
+    height: 40px;
+    
+    border: none;
+    outline: none;
 }
-form.add-project label {
-    flex: 0 0 150px;
-    text-align: right;
-    padding-right: 1rem;
+
+.new-project label {
+    flex-basis: 100%;
+    margin-bottom: 1rem;
+    color: var(--text-color-main);
+    font-weight: bold;
 }
-form.add-project input[type="text"]{
-    width: 100%;
-    height: 3rem;
+
+.new-project input[type="text"] {
+    flex-basis: 70%;
+    border: 1px solid var(--detail-lines);
+    border-right: none;
     padding-left: 1rem;
-    border: 1px solid #455A64;
-    border-radius: 5rem;
-    color: black;
+    font-size: 1rem;
 }
-form input[type="submit"]{
-    margin-top: 1rem;
-    text-align: center;
-    display: block;
-    padding: 1.5rem;
-    color: black;
-    width: auto;
-    margin: 0;
+
+.new-project input[type="submit"] {
+    background: rgb(255, 133, 133);
+    color: var(--bg-secondary);
+    
+    flex-basis: 30%;
 }
+
 
 .container-actions {
     max-width: 800px;
@@ -377,6 +484,88 @@ form input[type="submit"]{
     display: block;
 }
 
+/* Project-details */
+.task {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+}
+
+
+.add-task {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    background: white;
+    height: min-content;
+    width: 450px;
+    padding: 1rem;
+    margin: 1.3rem auto;
+}
+.add-task input {
+    height: 40px!important;
+    
+    border: none;
+    outline: none;
+}
+
+.add-task label {
+    flex-basis: 100%;
+    color: var(--text-color-main);
+    font-weight: bold;
+    font-size: 1rem;
+}
+.add-task input[type="submit"] {
+    background: rgb(255, 133, 133);
+    color: var(--bg-secondary);
+    flex-basis: 30%;
+}
+
+.task__action {
+    color: gray;
+    background: transparent;
+    border: none;
+}
+
+.task--delete {
+    color: rgb(255, 161, 161)!important;
+    margin-left: 1rem;
+}
+
+.task--edit {
+    text-decoration: none;
+}
+
+.task--edit:hover, .task--delete:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+.task__do {
+    grid-column: span 2;
+}
+.task__do h2 {
+    text-align: center;
+}
+
+.task__header {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    background: white;
+}
+
+.task__header--name {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #ff8787!important;
+    text-align: left!important;
+    flex-basis: 80%;
+    padding-left: 1rem;
+}
+
 .no-tasks {
     max-width: 800px;
     width: 90%;
@@ -392,5 +581,6 @@ form input[type="submit"]{
 }
 
 .success {
-    color: rgb(0, 204, 102);
+    color: rgb(0, 204, 102)!important;
 }
+
