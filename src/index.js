@@ -17,7 +17,7 @@ require('./models/projectModel')
 require('./models/taskModel')
 require('./models/userModel')
 
-db.sync()
+db.sync({force: true})
   .then(() => console.log('Database ok') )
   .catch(err => { console.log('Unable to connect to database, error: ' + err) })
 
